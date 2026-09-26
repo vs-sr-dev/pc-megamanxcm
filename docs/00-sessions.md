@@ -55,3 +55,31 @@ Results:
 Left: the sound (the GameCube's AX), the memory cards (no save yet), the
 dark screens before the title (a movie? to compare with Dolphin), play
 beyond the opening.
+
+## Session 2 — the sound
+
+Goal: the GameCube's AX micro-code, the first item of the plan. Done in
+one step, and it answered a second item on the way.
+
+Results:
+
+* **The sound** (`05-audio.md`): wiikit mixes the GameCube's AX command
+  lists (`10-wiikit.md`), written from Dolphin's `AXUCode`: 5 ms frames,
+  each voice run a millisecond at a time with MusyX's queued updates,
+  three buses, samples read from ARAM. It worked at the first build: the
+  music (DSP-ADPCM streamed into ARAM), the effects and the voices, played
+  by the user past the opening and judged perfect, but for one
+  micro-stutter at the start of a spoken line.
+* **The dark screens before the title were the opening movie**, waiting:
+  its player follows its sound by its AX voice's position, which nothing
+  moved while the lists went unmixed. With the sound, `op.thp` plays.
+* **The camera**: the C stick turns the view the way of 2004 (the other
+  way from today's games), with no option in the game. The port's layer
+  turns the C stick's X around (`MMXCM_CAMERA=console` keeps the
+  console's way); the vertical axis moves nothing. For it, wiikit's port
+  filter for the Classic Controller now also sees the GameCube's
+  controllers.
+* The four Wii ports were checked with the new wiikit: the same screens
+  and, their sound dumped, the same loudness second by second.
+
+Left: the memory cards, the micro-stutter, play on.

@@ -21,12 +21,12 @@ wiikit, not here. wiikit is a submodule at `wiikit/` (clone with
 
 ## Where it stands
 
-After one session the game **boots, draws and plays its opening**: the
+After two sessions the game **boots and plays, with its sound**: the
 Nintendo and Dolby screens, the memory card check, the CAPCOM logo, the
-title, the menu, a new game and the opening scenes in real-time 3D, at 50
-frames a second (PAL), with the pad. **It is silent** (the GameCube's
-audio micro-code is not mixed yet), **it cannot save** (no memory cards
-yet), and nothing past the opening has been played. See
+opening movie, the title, the menu, a new game, the opening scenes in
+real-time 3D and play past them, at 50 frames a second (PAL), with the
+pad, its music, effects and voices. **It cannot save** yet (no memory
+cards), and little past the opening has been played. See
 [docs/07-next-session.md](docs/07-next-session.md).
 
 ## BYOA — Bring Your Own Assets
@@ -106,6 +106,11 @@ triggers Z. The keys are wiikit's defaults for the Classic Controller, in
 `build/keys.txt` (Enter A, Backspace B, R X, F Y, Tab START, WASD the
 stick, the arrows the d-pad); a layout for this game is still to come.
 
+The C stick turns the camera the way of today's games: pushed right, the
+view turns right. The console's game turns it the other way and has no
+option for it; `MMXCM_CAMERA=console` in the environment keeps the
+console's way.
+
 ## Status
 
 Session 1: **the game runs to its opening scenes.** The disc read from its
@@ -114,8 +119,12 @@ units, no gaps) and named from a symbol table found on the disc. wiikit
 learnt the GameCube: its discs, its clocks, its disc drive, ARAM and the
 controllers. Three stops on the way, each a matter of time (an ARAM
 transfer, the disc's commands) or of a status bit (the controllers'), are
-told in [docs/00-sessions.md](docs/00-sessions.md). No sound and no saving
-yet.
+told in [docs/00-sessions.md](docs/00-sessions.md).
+
+Session 2: **the sound.** wiikit mixes the GameCube's AX micro-code, which
+the game's MusyX drives: the music streamed through ARAM, the effects, the
+voices. The opening movie, dark in session 1, plays: its player had been
+waiting for its sound. No saving yet.
 
 ## Documentation
 
@@ -123,6 +132,7 @@ yet.
     01-disc-layout.md         what is on the disc
     03-executable.md          the DOL: what is linked, the disc's symbol table, landmarks
     04-curiosities.md         what the disc reveals
+    05-audio.md               the sound: MusyX over AX, what the game plays, the movie that waited
     07-next-session.md        the plan for the next session
     10-wiikit.md              how this port uses and grows wiikit
 
