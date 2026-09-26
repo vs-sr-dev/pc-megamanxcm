@@ -1,0 +1,5 @@
+# Mega Man X: Command Mission: the functions tools/mmxcm.cpp replaces, on top of
+# wiikit/runtime/hooks.txt:
+#     python -m wiikit.recomp build/extract/sys/main.dol --out build/recomp \
+#         --symbols build/names.tsv --hooks tools/mmxcm-hooks.txt
+SoundInit              # the sound driver's heap: a stack slot given the console's value

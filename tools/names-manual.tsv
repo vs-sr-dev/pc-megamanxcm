@@ -1,0 +1,10 @@
+addr	name	evidence
+801D10B0	OSLoadContext	right after OSSaveContext (Dolphin's): lmw of the GPRs, the GQRs (mtspr gqr1..gqr7), CR, LR, CTR, XER, SRR0/SRR1 and rfi
+801D529C	OSCreateThread	OSThread.o order: between __OSReschedule and OSExitThread (before OSCancelThread, Dolphin's); 488 bytes; seven arguments, the priority (r8) checked against 0 first
+801CED94	PPCHalt	sync; nop; li r3,0; nop; b back: the SDK's halt loop, the only such sequence in the DOL
+80003154	__start	the DOL's entry point
+801CEFF4	OSInit	__start's call after DBInit, as in the SDK's __start
+80022344	main	__start's last call, after __init_user
+801D3534	RealMode	clrlwi r3,r3,2; mtsrr0; mfmsr; IR and DR cleared; mtsrr1; rfi: the only rfi into a real-mode routine (__OSInitMemoryProtection's BAT set-up)
+801D01B8	OSAllocFromHeap	OSAlloc.o order: just before OSFreeToHeap (Dolphin's); heap * 12 into the heap array at -0x7518(r13), the size rounded up to 32 bytes plus a 32-byte header
+8023596C	SoundInit	the game's sound set-up (the disc's symbol table, slib.a, names it too): main's call after ARAMInit (800120B0); fills the sound driver's configuration at 805A2B94 and sends it command 0x20000 through CpCall_SndDriver (8022B104); CpInitSoundDriver (8022ED5C) takes the heap from the configuration's +0x10. A hook: the names of the disc's table are another build's, aligned, and this one must not depend on that
