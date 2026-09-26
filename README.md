@@ -69,7 +69,9 @@ python tools/names.py build/extract/sys/main.dol      # -> build/names.tsv
 
 `fstmap.py` names 4 136 of the executable's 4 222 functions from
 `data/rkrpg_1.fst`, a symbol table left on the disc (see
-[docs/03-executable.md](docs/03-executable.md)); `sigmatch.py` adds
+[docs/03-executable.md](docs/03-executable.md)); its first run finds the
+functions with wiikit's discovery, a few minutes, and keeps them in
+`build/units.tsv`. `sigmatch.py` adds
 Dolphin's signatures (`totaldb.dsy`, in every Dolphin's `Sys` folder),
 which alone gave 816. `names.py` keeps them, most trusted first, after the
 hand names of `tools/names-manual.tsv`, each with its evidence.

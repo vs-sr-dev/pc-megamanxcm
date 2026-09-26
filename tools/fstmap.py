@@ -6,7 +6,9 @@ mangled name and object file. Its addresses are not this DOL's (the code
 after main is shifted, and some of the game's functions differ in size), so
 the two lists are aligned by order and size: runs of consecutive functions
 of equal sizes, found by difflib, are taken as the same functions. The
-signature names of build/names.tsv check the result.
+DOL's functions are wiikit's discovery's, kept in build/units.tsv (made
+here the first time, or by tools/look.py). The names of build/names.tsv,
+if there is one yet, check the result.
 
     python tools/fstmap.py build/extract/sys/main.dol        # -> build/fst_names.tsv
 """
@@ -20,6 +22,8 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))  # wiikit/
 
 from wiikit.cw import demangle  # noqa: E402
+from wiikit.dol import Image  # noqa: E402
+from wiikit.recomp.discover import load_names, symbolise  # noqa: E402
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
@@ -45,7 +49,13 @@ def read_fst(path):
     return sorted(out)
 
 
-def read_units(path):
+def read_units(path, dol, names_path):
+    if not os.path.exists(path):                     # discovery, as tools/look.py keeps it
+        names = load_names(names_path) if os.path.exists(names_path) else {}
+        found, _ = symbolise(Image(dol), names, log=lambda *a: None)
+        with open(path, "w", newline="\n") as f:
+            for a, e in found:
+                f.write(f"{a:08X} {e:08X}\n")
     units = []
     with open(path) as f:
         for line in f:
@@ -65,7 +75,7 @@ def main():
     a = ap.parse_args()
 
     fst = read_fst(a.fst)
-    units = read_units(a.units)
+    units = read_units(a.units, a.dol, a.names)
     sm = difflib.SequenceMatcher(None, [s for _, s in units], [e[1] for e in fst], autojunk=False)
     mapped = {}
     for blk in sm.get_matching_blocks():

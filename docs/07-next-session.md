@@ -32,6 +32,8 @@ saved.
 Build and run:
 
     python tools/fstmap.py build/extract/sys/main.dol
+    python tools/sigmatch.py build/extract/sys/main.dol \
+        --dsy <Dolphin>/Sys/totaldb.dsy --out build/sig_guess.tsv
     python tools/names.py build/extract/sys/main.dol
     python -m wiikit.recomp build/extract/sys/main.dol --out build/recomp \
         --symbols build/names.tsv --hooks tools/mmxcm-hooks.txt
@@ -52,3 +54,13 @@ An unattended check: `WIIKIT_PAD="14:A 16:A 18:A 20:A 22:A 30:+ 32:+ 34:+
 36:+ 38:A 40:A 42:A"`, 56 s, reaches the opening scenes, the movie played
 on the way (the presses go to port 1 as the Classic's buttons, then the
 pad's).
+
+Housekeeping (2026-09-26, after session 2): wiikit is pushed up to
+`0d235b5`, whose README names this port; the four Wii ports are bumped to
+it and pushed. This repository is published at
+[vs-sr-dev/pc-megamanxcm](https://github.com/vs-sr-dev/pc-megamanxcm).
+A fresh `clone --recursive` was checked from nothing but the disc and
+Dolphin's `totaldb.dsy`: `fstmap.py` needed `build/units.tsv`, which only
+`look.py` wrote, and now runs the discovery itself; then the names came
+out byte for byte as this build's, the recompiled C++ the same, and the
+build booted to the opening scenes, the movie played on the way.
