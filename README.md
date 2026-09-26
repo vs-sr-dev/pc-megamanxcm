@@ -25,8 +25,10 @@ After two sessions the game **boots and plays, with its sound**: the
 Nintendo and Dolby screens, the memory card check, the CAPCOM logo, the
 opening movie, the title, the menu, a new game, the opening scenes in
 real-time 3D and play past them, at 50 frames a second (PAL), with the
-pad, its music, effects and voices. **It cannot save** yet (no memory
-cards), and little past the opening has been played. See
+pad, its music, effects and voices. **It cannot save** yet: there are no
+memory cards, and at the game's warning "Continue without saving" goes
+on. Little past the opening has been played; one micro-stutter was heard
+at the start of a spoken line. See
 [docs/07-next-session.md](docs/07-next-session.md).
 
 ## BYOA — Bring Your Own Assets
@@ -123,8 +125,9 @@ told in [docs/00-sessions.md](docs/00-sessions.md).
 
 Session 2: **the sound.** wiikit mixes the GameCube's AX micro-code, which
 the game's MusyX drives: the music streamed through ARAM, the effects, the
-voices. The opening movie, dark in session 1, plays: its player had been
-waiting for its sound. No saving yet.
+voices, played past the opening and judged right by ear. The opening
+movie, dark in session 1, plays: its player had been waiting for its
+sound. The camera turns the modern way. No saving yet.
 
 ## Documentation
 

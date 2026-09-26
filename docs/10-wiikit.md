@@ -6,8 +6,8 @@ pc-dragonquestswords, pc-conduit2, pc-arcrisefantasia). It is its fifth
 user and its first GameCube game: the GameCube support went into wiikit
 itself, one toolkit, because the two consoles share the processor, the
 GPU, the DSP and most of the SDK. Changes made for it are described by what
-they do (wiikit's commits call it "a stripped 2004 GameCube game" while
-this port is not public), and checked on every port before they go in.
+they do (wiikit's commits of sessions 1 and 2 call it "a stripped 2004
+GameCube game", written before this port was published), and checked on every port before they go in.
 
 ## What this port used as it is
 
